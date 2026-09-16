@@ -1,6 +1,6 @@
 # Prophetチュートリアル第07回：ノイズ対策編：外れ値の処理
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/07_outliers.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/07_outliers.ipynb)
 
 ## 突発的な外れ値（異常値）の影響除去
 

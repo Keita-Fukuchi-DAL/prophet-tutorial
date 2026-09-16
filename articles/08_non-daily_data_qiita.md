@@ -1,6 +1,6 @@
 # Prophetチュートリアル第08回：データ形式編：非日次データ
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/08_non-daily_data.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/08_non-daily_data.ipynb)
 
 ## 月次データ・非日次データのモデリング
 

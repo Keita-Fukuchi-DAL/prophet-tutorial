@@ -18,6 +18,8 @@ warnings.filterwarnings('ignore')
 
 os.makedirs('images', exist_ok=True)
 os.makedirs('original_en', exist_ok=True)
+os.makedirs('notebooks', exist_ok=True)
+os.makedirs('articles', exist_ok=True)
 
 print("Loading base datasets...")
 manning_df = pd.read_csv('https://raw.githubusercontent.com/facebook/prophet/main/examples/example_wp_log_peyton_manning.csv')
@@ -25,13 +27,166 @@ retail_df = pd.read_csv('https://raw.githubusercontent.com/facebook/prophet/main
 yosemite_df = pd.read_csv('https://raw.githubusercontent.com/facebook/prophet/main/examples/example_yosemite_temps.csv')
 
 def save_files(num_str, filename_base, nb_obj, md_str):
-    nb_file = f"{num_str}_{filename_base}.ipynb"
-    md_file = f"{num_str}_{filename_base}_qiita.md"
+    nb_file = os.path.join('notebooks', f"{num_str}_{filename_base}.ipynb")
+    md_file = os.path.join('articles', f"{num_str}_{filename_base}_qiita.md")
     with open(nb_file, 'w', encoding='utf-8') as f:
         json.dump(nb_obj, f, ensure_ascii=False, indent=1)
     with open(md_file, 'w', encoding='utf-8') as f:
         f.write(md_str.strip() + "\n")
     print(f"Saved {nb_file} and {md_file}")
+
+# ==========================================
+# 01: quick_start
+# ==========================================
+print("Generating 01: quick_start...")
+df_01 = manning_df.copy()
+m_01 = Prophet()
+m_01.fit(df_01)
+future_01 = m_01.make_future_dataframe(periods=365)
+fc_01 = m_01.predict(future_01)
+
+fig = m_01.plot(fc_01)
+fig.savefig('images/01_plot_forecast.png', bbox_inches='tight')
+plt.close(fig)
+
+fig = m_01.plot_components(fc_01)
+fig.savefig('images/01_plot_components.png', bbox_inches='tight')
+plt.close(fig)
+
+nb_01 = {
+ "cells": [
+  {"cell_type": "markdown", "metadata": {}, "source": ["# Prophetチュートリアル第01回：基礎編：クイックスタート\n\n## Python API\n\nMeta（旧Facebook）が開発した時系列予測ライブラリ **Prophet** の操作感は、Pythonの機械学習ライブラリ `scikit-learn` のモデルAPIと統一されています。\n\n基本フローは非常にシンプルで、`Prophet` クラスのインスタンスを生成した後、過去データを `fit()` メソッドで学習させ、`predict()` メソッドで未来の予測値を算出します。\n\n## 入力データの形式（dsとyの制約）\n\nProphetに投入する入力データフレームには、**`ds`** と **`y`** という名前の2つのカラムが必須となります。\n\n- **`ds`（datestamp）**: 日付または日時の識別カラム。Pandasが認識できる日付フォーマット（日付のみの場合は `YYYY-MM-DD`、時間を含む場合は `YYYY-MM-DD HH:MM:SS`）に揃える必要があります。\n- **`y`**: 予測対象となる数値データ（売上高、アクセス数、需要量など）。\n\n### サンプルデータセットの解説\n本チュートリアルではサンプルとして、NFL（米アメフトリーグ）の名クォーターバックである **Peyton Manning（ペイトン・マニング）** のWikipediaページにおける日別ページビュー（PV）数の対数時系列データ（`example_wp_log_peyton_manning.csv`）を使用します。\n\nこのデータはアクセス数の急激なスパイクによる影響を和らげスケールを揃えるために対数変換（`log`）されています。また、複数スケールの季節性、トレンドの転換点、イベント効果（スーパーボウル出場日など）が含まれており、Prophetの機能を学ぶのに最適なサンプルです。\n\nまず、必要なライブラリのインポートと前処理を行います。"]},
+  {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": ["!pip install prophet\nimport warnings\nwarnings.filterwarnings('ignore')\n\nimport pandas as pd\nfrom prophet import Prophet"]},
+  {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": ["df = pd.read_csv('https://raw.githubusercontent.com/facebook/prophet/main/examples/example_wp_log_peyton_manning.csv')\ndf.head()"]},
+  {"cell_type": "markdown", "metadata": {}, "source": ["## モデルのインスタンス化と学習 (`fit`)\n\nモデルオブジェクトを生成後、`fit()` メソッドに過去のデータフレーム `df` を渡すことで、モデルの学習（フィッティング）が実行されます。"]},
+  {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": ["m = Prophet()\nm.fit(df)"]},
+  {"cell_type": "markdown", "metadata": {}, "source": ["## 未来の予測用データフレームの生成 (`make_future_dataframe`)\n\nProphetが提供するヘルパー関数 `make_future_dataframe()` を使用すると、指定した日数（`periods`）だけ未来に拡張された日付列を持つデータフレームを容易に生成できます。デフォルトでは過去の学習期間の日付も自動的に含まれるため、インサンプルでのあてはまり（適合度）も確認できます。"]},
+  {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": ["future = m.make_future_dataframe(periods=365)\nfuture.tail()"]},
+  {"cell_type": "markdown", "metadata": {}, "source": ["## 予測の実行と推論結果 (`predict`)\n\n作成した `future` データフレームを `predict()` メソッドに渡すことで、各日付に対する予測処理（推論）を実行します。\n算出される `forecast` オブジェクトには、主となる予測値 `yhat` や予測区間（`yhat_lower`, `yhat_upper`）、成分分解データが含まれます。"]},
+  {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": ["forecast = m.predict(future)\nforecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail()"]},
+  {"cell_type": "markdown", "metadata": {}, "source": ["## 予測結果のプロットと可視化 (`plot`)\n\n`m.plot()` メソッドに予測結果 `forecast` を渡すことで、過去の実測値（黒点）、予測トレンド、不確実性区間（青い帯）を可視化できます。"]},
+  {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": ["fig1 = m.plot(forecast)\nfig1.savefig('01_plot_forecast.png', bbox_inches='tight')"]},
+  {"cell_type": "markdown", "metadata": {}, "source": ["## 時系列の変動成分の分解可視化 (`plot_components`)\n\n`m.plot_components()` メソッドを呼び出すことで、予測値を「全体トレンド」「曜日ごとの季節性」「年間の季節性」などの独立した成分に分解して視覚的に分析できます。"]},
+  {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": ["fig2 = m.plot_components(forecast)\nfig2.savefig('01_plot_components.png', bbox_inches='tight')"]},
+  {"cell_type": "markdown", "metadata": {}, "source": ["## 生成画像のZip一括ダウンロード\n\n以下のセルを実行すると、保存された画像がZip形式で一括ダウンロードされます。"]},
+  {"cell_type": "code", "execution_count": None, "metadata": {}, "outputs": [], "source": ["import glob, zipfile\nfrom google.colab import files\n\npng_files = glob.glob('*.png')\nwith zipfile.ZipFile('images.zip', 'w') as zipf:\n    for f in png_files:\n        zipf.write(f)\nfiles.download('images.zip')"]}
+ ],
+ "metadata": {"language_info": {"name": "python"}}, "nbformat": 4, "nbformat_minor": 2
+}
+
+md_01 = """# Prophetチュートリアル第01回：基礎編：クイックスタート
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/01_quick_start.ipynb)
+
+## Python API
+
+Meta（旧Facebook）が開発した時系列予測ライブラリ **Prophet** の操作感は、Pythonの機械学習ライブラリ `scikit-learn` のモデルAPIと統一されています。
+
+基本フローは非常にシンプルで、`Prophet` クラスのインスタンスを生成した後、過去データを `fit()` メソッドで学習させ、`predict()` メソッドで未来の予測値を算出します。
+
+## 入力データの形式（dsとyの制約）
+
+Prophetに投入する入力データフレームには、**`ds`** と **`y`** という名前の2つのカラムが必須となります。
+
+- **`ds`（datestamp）**: 日付または日時の識別カラム。Pandasが認識できる日付フォーマット（日付のみの場合は `YYYY-MM-DD`、時間を含む場合は `YYYY-MM-DD HH:MM:SS`）に揃える必要があります。
+- **`y`**: 予測対象となる数値データ（売上高、アクセス数、需要量など）。
+
+### サンプルデータセットの解説
+本チュートリアルではサンプルとして、NFL（米アメフトリーグ）の名クォーターバックである **Peyton Manning（ペイトン・マニング）** のWikipediaページにおける日別ページビュー（PV）数の対数時系列データ（`example_wp_log_peyton_manning.csv`）を使用します。
+
+このデータはRの `wikipediatrend` パッケージで取得されたもので、アクセス数の急激なスパイクによる影響を和らげスケールを揃えるために対数変換（`log`）されています。Peyton Manningのアクセスデータは、以下のような時系列分析における重要な要素がすべて含まれているため、Prophetの機能を学ぶのに最も適したサンプルデータです。
+
+- **複数の季節性**: 試合が開催される日曜日ごとの周期（週季節性）や、シーズン中の年季節性
+- **トレンドの転換点**: 現役生活の経過や引退に伴う長期的な成長率の変化
+- **イベント効果**: プレーオフやスーパーボウル出場日など、特定のイベント日における急激なアクセス増
+
+まず、必要なライブラリのインポートと前処理を行います。
+
+```python
+!pip install prophet
+import warnings
+warnings.filterwarnings('ignore')
+
+import pandas as pd
+from prophet import Prophet
+```
+
+```python
+# サンプルデータの取得
+df = pd.read_csv('https://raw.githubusercontent.com/facebook/prophet/main/examples/example_wp_log_peyton_manning.csv')
+df.head()
+```
+
+## モデルのインスタンス化と学習 (`fit`)
+
+モデルの構築は、`Prophet` オブジェクトをインスタンス化することから始まります。予測手順に関するハイパーパラメータ（成長モデルや季節性の詳細設定など）は、このコンストラクタに渡します。
+
+モデルオブジェクトを生成後、`fit()` メソッドに過去のデータフレーム `df` を渡すことで、モデルの学習（フィッティング）が実行されます。通常、学習処理は1〜5秒程度で完了します。
+
+```python
+# モデルの定義とフィッティング
+m = Prophet()
+m.fit(df)
+```
+
+## 未来の予測用データフレームの生成 (`make_future_dataframe`)
+
+モデルの学習が完了したら、予測を行いたい対象の期間（日付スタンプ）を含むデータフレームを用意します。
+
+Prophetが提供するヘルパー関数 `make_future_dataframe()` を使用すると、指定した日数（`periods`）だけ未来に拡張された日付列を持つデータフレームを容易に生成できます。デフォルトでは過去の学習期間の日付も自動的に含まれるため、過去データへのフィッティング状況（インサンプル評価）もあわせて確認できます。
+
+```python
+# 今後365日分（1年間）の未来の日付を含むデータフレームを生成
+future = m.make_future_dataframe(periods=365)
+future.tail()
+```
+
+## 予測の実行と推論結果 (`predict`)
+
+作成した `future` データフレームを `predict()` メソッドに渡すことで、各日付に対する予測処理（推論）を実行します。
+
+算出される予測結果オブジェクト `forecast` は、主となる予測値 **`yhat`** をはじめ、予測の不確実性の幅を示す予測区間（下限 **`yhat_lower`**、上限 **`yhat_upper`**）、およびトレンドや季節性などの分解成分のカラムを含む新しいデータフレームです。
+
+```python
+# 予測（推論）の実行
+forecast = m.predict(future)
+
+# 予測結果の主要カラムの確認
+forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail()
+```
+
+## 予測結果のプロットと可視化 (`plot`)
+
+`m.plot()` メソッドに予測データフレーム `forecast` を渡すことで、過去の実測値（黒点）、予測モデルの推定トレンドおよび不確実性区間（青い線と青い帯）を直感的に可視化できます。
+
+```python
+# 予測結果のグラフ描画と画像保存
+fig1 = m.plot(forecast)
+fig1.savefig('01_plot_forecast.png', bbox_inches='tight')
+```
+
+![01_plot_forecast](https://raw.githubusercontent.com/Keita-Fukuchi-DAL/prophet-tutorial/main/images/01_plot_forecast.png)
+
+## 時系列の変動成分の分解可視化 (`plot_components`)
+
+Prophetの強力な機能の一つに、予測値を **「全体トレンド」「曜日ごとの季節性」「年間の季節性」** などの要素に分解して可視化できる点があります。
+
+`m.plot_components()` メソッドを呼び出すことで、それぞれの成分が全体の予測値にどのように影響を与えているかを詳細に分析できます。もしモデルに祝日やイベント効果を追加した場合は、それらの影響度も独立した成分としてプロットされます。
+
+```python
+# 分解成分（トレンド・季節性内訳）のグラフ描画と画像保存
+fig2 = m.plot_components(forecast)
+fig2.savefig('01_plot_components.png', bbox_inches='tight')
+```
+
+![01_plot_components](https://raw.githubusercontent.com/Keita-Fukuchi-DAL/prophet-tutorial/main/images/01_plot_components.png)
+
+---
+**連載ナビゲーション**
+* [📋 マスター記事（全10回目次）](master_article.md)
+* [次の記事（第02回 成長限界編：飽和予測） →](02_saturating_forecasts_qiita.md)
+"""
+save_files("01", "quick_start", nb_01, md_01)
 
 # ==========================================
 # 02: saturating_forecasts
@@ -80,7 +235,7 @@ nb_02 = {
 
 md_02 = """# Prophetチュートリアル第02回：成長限界編：飽和予測
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/02_saturating_forecasts.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/02_saturating_forecasts.ipynb)
 
 ## 成長モデルの定義（ロジスティック成長）
 
@@ -192,7 +347,7 @@ nb_03 = {
 
 md_03 = """# Prophetチュートリアル第03回：トレンド編：変化点検知
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/03_trend_changepoints.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/03_trend_changepoints.ipynb)
 
 ## トレンド転換点（変化点）の自動検知
 
@@ -318,7 +473,7 @@ nb_04 = {
 
 md_04 = """# Prophetチュートリアル第04回：周期・イベント編：季節性と祝日効果
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/04_seasonality_holiday_effects_and_regressors.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/04_seasonality_holiday_effects_and_regressors.ipynb)
 
 ## 祝日・イベント効果のモデリング（holidays）
 
@@ -440,7 +595,7 @@ nb_05 = {
 
 md_05 = """# Prophetチュートリアル第05回：変動増幅編：乗数的な季節性
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/05_multiplicative_seasonality.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/05_multiplicative_seasonality.ipynb)
 
 ## 乗法的な季節性（Multiplicative Seasonality）
 
@@ -506,7 +661,7 @@ nb_06 = {
 
 md_06 = """# Prophetチュートリアル第06回：予測評価編：予測区間
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/06_uncertainty_intervals.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/06_uncertainty_intervals.ipynb)
 
 ## 予測の不確実性区間（信頼区間・予測区間）の制御
 
@@ -570,7 +725,7 @@ nb_07 = {
 
 md_07 = """# Prophetチュートリアル第07回：ノイズ対策編：外れ値の処理
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/07_outliers.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/07_outliers.ipynb)
 
 ## 突発的な外れ値（異常値）の影響除去
 
@@ -647,7 +802,7 @@ nb_08 = {
 
 md_08 = """# Prophetチュートリアル第08回：データ形式編：非日次データ
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/08_non-daily_data.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/08_non-daily_data.ipynb)
 
 ## 月次データ・非日次データのモデリング
 
@@ -708,7 +863,6 @@ df_09 = manning_df.copy()
 m_09 = Prophet()
 m_09.fit(df_09)
 
-# Perform quick CV for image generation
 df_cv = cross_validation(m_09, initial='730 days', period='180 days', horizon='365 days')
 df_p = performance_metrics(df_cv)
 
@@ -734,7 +888,7 @@ nb_09 = {
 
 md_09 = """# Prophetチュートリアル第09回：精度検証編：モデル診断
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/09_diagnostics.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/09_diagnostics.ipynb)
 
 ## クロスバリデーション（交差検証）の自動実行
 
@@ -815,7 +969,7 @@ nb_10 = {
 
 md_10 = """# Prophetチュートリアル第10回：応用編：高度なトピック
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/10_additional_topics.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/10_additional_topics.ipynb)
 
 ## フラットトレンド（growth='flat'）の設定
 
@@ -865,4 +1019,4 @@ print('Model successfully restored from JSON!')
 """
 save_files("10", "additional_topics", nb_10, md_10)
 
-print("ALL TUTORIAL FILES AND IMAGES SUCCESSFULLY GENERATED!")
+print("ALL TUTORIAL FILES AND IMAGES SUCCESSFULLY GENERATED IN RESTRUCTURING!")

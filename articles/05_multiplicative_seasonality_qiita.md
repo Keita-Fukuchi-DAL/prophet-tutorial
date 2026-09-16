@@ -1,6 +1,6 @@
 # Prophetチュートリアル第05回：変動増幅編：乗数的な季節性
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/05_multiplicative_seasonality.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/05_multiplicative_seasonality.ipynb)
 
 ## 乗法的な季節性（Multiplicative Seasonality）
 

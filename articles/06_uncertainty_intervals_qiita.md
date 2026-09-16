@@ -1,6 +1,6 @@
 # Prophetチュートリアル第06回：予測評価編：予測区間
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/06_uncertainty_intervals.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/06_uncertainty_intervals.ipynb)
 
 ## 予測の不確実性区間（信頼区間・予測区間）の制御
 

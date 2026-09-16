@@ -1,6 +1,6 @@
 # Prophetチュートリアル第10回：応用編：高度なトピック
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/10_additional_topics.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/10_additional_topics.ipynb)
 
 ## フラットトレンド（growth='flat'）の設定
 

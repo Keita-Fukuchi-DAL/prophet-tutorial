@@ -1,6 +1,6 @@
 # Prophetチュートリアル第09回：精度検証編：モデル診断
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/09_diagnostics.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/09_diagnostics.ipynb)
 
 ## クロスバリデーション（交差検証）の自動実行
 

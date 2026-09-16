@@ -1,6 +1,6 @@
 # Prophetチュートリアル第04回：周期・イベント編：季節性と祝日効果
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/04_seasonality_holiday_effects_and_regressors.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/04_seasonality_holiday_effects_and_regressors.ipynb)
 
 ## 祝日・イベント効果のモデリング（holidays）
 

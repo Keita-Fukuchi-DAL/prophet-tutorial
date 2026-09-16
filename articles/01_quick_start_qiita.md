@@ -1,6 +1,6 @@
 # Prophetチュートリアル第01回：基礎編：クイックスタート
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/01_quick_start.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/01_quick_start.ipynb)
 
 ## Python API
 
@@ -108,4 +108,4 @@ fig2.savefig('01_plot_components.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [📋 マスター記事（全10回目次）](master_article.md)
-* [次の記事（第02回 成長限界編：飽和予測） →](#)
+* [次の記事（第02回 成長限界編：飽和予測） →](02_saturating_forecasts_qiita.md)

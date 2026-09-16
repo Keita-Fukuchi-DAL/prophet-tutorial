@@ -1,6 +1,6 @@
 # Prophetチュートリアル第03回：トレンド編：変化点検知
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/03_trend_changepoints.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/03_trend_changepoints.ipynb)
 
 ## トレンド転換点（変化点）の自動検知
 

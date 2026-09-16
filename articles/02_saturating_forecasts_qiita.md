@@ -1,6 +1,6 @@
 # Prophetチュートリアル第02回：成長限界編：飽和予測
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/02_saturating_forecasts.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/notebooks/02_saturating_forecasts.ipynb)
 
 ## 成長モデルの定義（ロジスティック成長）
 
