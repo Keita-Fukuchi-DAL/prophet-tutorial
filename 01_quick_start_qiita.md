@@ -2,13 +2,13 @@
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Keita-Fukuchi-DAL/prophet-tutorial/blob/main/01_quick_start.ipynb)
 
-## 1. Prophetの基礎と操作感（Python API）
+## Python API
 
 Meta（旧Facebook）が開発した時系列予測ライブラリ **Prophet** の操作感は、Pythonの機械学習ライブラリ `scikit-learn` のモデルAPIと統一されています。
 
 基本フローは非常にシンプルで、`Prophet` クラスのインスタンスを生成した後、過去データを `fit()` メソッドで学習させ、`predict()` メソッドで未来の予測値を算出します。
 
-## 2. 入力データの形式（dsとyの制約）
+## 入力データの形式（dsとyの制約）
 
 Prophetに投入する入力データフレームには、**`ds`** と **`y`** という名前の2つのカラムが必須となります。
 
@@ -41,7 +41,7 @@ df = pd.read_csv('https://raw.githubusercontent.com/facebook/prophet/main/exampl
 df.head()
 ```
 
-## 3. モデルのインスタンス化と学習 (`fit`)
+## モデルのインスタンス化と学習 (`fit`)
 
 モデルの構築は、`Prophet` オブジェクトをインスタンス化することから始まります。予測手順に関するハイパーパラメータ（成長モデルや季節性の詳細設定など）は、このコンストラクタに渡します。
 
@@ -53,7 +53,7 @@ m = Prophet()
 m.fit(df)
 ```
 
-## 4. 未来の予測用データフレームの生成 (`make_future_dataframe`)
+## 未来の予測用データフレームの生成 (`make_future_dataframe`)
 
 モデルの学習が完了したら、予測を行いたい対象の期間（日付スタンプ）を含むデータフレームを用意します。
 
@@ -65,7 +65,7 @@ future = m.make_future_dataframe(periods=365)
 future.tail()
 ```
 
-## 5. 予測の実行と推論結果 (`predict`)
+## 予測の実行と推論結果 (`predict`)
 
 作成した `future` データフレームを `predict()` メソッドに渡すことで、各日付に対する予測処理（推論）を実行します。
 
@@ -79,7 +79,7 @@ forecast = m.predict(future)
 forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail()
 ```
 
-## 6. 予測結果のプロットと可視化 (`plot`)
+## 予測結果のプロットと可視化 (`plot`)
 
 `m.plot()` メソッドに予測データフレーム `forecast` を渡すことで、過去の実測値（黒点）、予測モデルの推定トレンドおよび不確実性区間（青い線と青い帯）を直感的に可視化できます。
 
@@ -91,7 +91,7 @@ fig1.savefig('01_plot_forecast.png', bbox_inches='tight')
 
 ![01_plot_forecast](https://raw.githubusercontent.com/Keita-Fukuchi-DAL/prophet-tutorial/main/images/01_plot_forecast.png)
 
-## 7. 時系列の変動成分の分解可視化 (`plot_components`)
+## 時系列の変動成分の分解可視化 (`plot_components`)
 
 Prophetの強力な機能の一つに、予測値を **「全体トレンド」「曜日ごとの季節性」「年間の季節性」** などの要素に分解して可視化できる点があります。
 
