@@ -48,5 +48,5 @@ fig2.savefig('09_plot_metrics.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第08回 データ形式編：非日次データ）](08_non-daily_data_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第10回 応用編：高度なトピック） →](10_additional_topics_qiita.md)

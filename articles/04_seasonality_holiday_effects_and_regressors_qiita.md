@@ -87,5 +87,5 @@ fig4.savefig('04_plot_regressor.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第03回 トレンド編：変化点検知）](03_trend_changepoints_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第05回 変動増幅編：乗数的な季節性） →](05_multiplicative_seasonality_qiita.md)

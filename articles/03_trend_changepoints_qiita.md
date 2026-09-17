@@ -49,5 +49,5 @@ fig2.savefig('03_plot_changepoints_prior.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第02回 成長限界編：飽和予測）](02_saturating_forecasts_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第04回 周期・イベント編：季節性と祝日効果） →](04_seasonality_holiday_effects_and_regressors_qiita.md)

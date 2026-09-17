@@ -46,4 +46,4 @@ print('Model successfully restored from JSON!')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第09回 精度検証編：モデル診断）](09_diagnostics_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)

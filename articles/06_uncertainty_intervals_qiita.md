@@ -31,5 +31,5 @@ fig1.savefig('06_plot_uncertainty.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第05回 変動増幅編：乗数的な季節性）](05_multiplicative_seasonality_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第07回 ノイズ対策編：外れ値の処理） →](07_outliers_qiita.md)

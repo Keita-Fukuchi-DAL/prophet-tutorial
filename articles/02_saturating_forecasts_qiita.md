@@ -72,5 +72,5 @@ fig2.savefig('02_plot_saturating_floor.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第01回 基礎編：クイックスタート）](01_quick_start_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第03回 トレンド編：変化点検知） →](03_trend_changepoints_qiita.md)

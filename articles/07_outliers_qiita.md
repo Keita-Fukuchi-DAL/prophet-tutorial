@@ -36,5 +36,5 @@ fig1.savefig('07_plot_outliers.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第06回 予測評価編：予測区間）](06_uncertainty_intervals_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第08回 データ形式編：非日次データ） →](08_non-daily_data_qiita.md)

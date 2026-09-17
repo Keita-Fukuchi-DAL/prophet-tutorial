@@ -183,7 +183,7 @@ fig2.savefig('01_plot_components.png', bbox_inches='tight')
 
 ---
 **連載ナビゲーション**
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第02回 成長限界編：飽和予測） →](02_saturating_forecasts_qiita.md)
 """
 save_files("01", "quick_start", nb_01, md_01)
@@ -307,7 +307,7 @@ fig2.savefig('02_plot_saturating_floor.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第01回 基礎編：クイックスタート）](01_quick_start_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第03回 トレンド編：変化点検知） →](03_trend_changepoints_qiita.md)
 """
 save_files("02", "saturating_forecasts", nb_02, md_02)
@@ -396,7 +396,7 @@ fig2.savefig('03_plot_changepoints_prior.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第02回 成長限界編：飽和予測）](02_saturating_forecasts_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第04回 周期・イベント編：季節性と祝日効果） →](04_seasonality_holiday_effects_and_regressors_qiita.md)
 """
 save_files("03", "trend_changepoints", nb_03, md_03)
@@ -560,7 +560,7 @@ fig4.savefig('04_plot_regressor.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第03回 トレンド編：変化点検知）](03_trend_changepoints_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第05回 変動増幅編：乗数的な季節性） →](05_multiplicative_seasonality_qiita.md)
 """
 save_files("04", "seasonality_holiday_effects_and_regressors", nb_04, md_04)
@@ -630,7 +630,7 @@ fig2.savefig('05_plot_multiplicative_components.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第04回 周期・イベント編：季節性と祝日効果）](04_seasonality_holiday_effects_and_regressors_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第06回 予測評価編：予測区間） →](06_uncertainty_intervals_qiita.md)
 """
 save_files("05", "multiplicative_seasonality", nb_05, md_05)
@@ -692,7 +692,7 @@ fig1.savefig('06_plot_uncertainty.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第05回 変動増幅編：乗数的な季節性）](05_multiplicative_seasonality_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第07回 ノイズ対策編：外れ値の処理） →](07_outliers_qiita.md)
 """
 save_files("06", "uncertainty_intervals", nb_06, md_06)
@@ -761,7 +761,7 @@ fig1.savefig('07_plot_outliers.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第06回 予測評価編：予測区間）](06_uncertainty_intervals_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第08回 データ形式編：非日次データ） →](08_non-daily_data_qiita.md)
 """
 save_files("07", "outliers", nb_07, md_07)
@@ -850,7 +850,7 @@ fig2.savefig('08_plot_subdaily.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第07回 ノイズ対策編：外れ値の処理）](07_outliers_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第09回 精度検証編：モデル診断） →](09_diagnostics_qiita.md)
 """
 save_files("08", "non-daily_data", nb_08, md_08)
@@ -936,7 +936,7 @@ fig2.savefig('09_plot_metrics.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第08回 データ形式編：非日次データ）](08_non-daily_data_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第10回 応用編：高度なトピック） →](10_additional_topics_qiita.md)
 """
 save_files("09", "diagnostics", nb_09, md_09)
@@ -1015,8 +1015,74 @@ print('Model successfully restored from JSON!')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第09回 精度検証編：モデル診断）](09_diagnostics_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 """
 save_files("10", "additional_topics", nb_10, md_10)
 
+master_md = """# Prophet公式チュートリアル全10回 日本語解説まとめ
+
+事業会社でアソシエイトデータサイエンティストとして働いて2年目になります。実務でProphetを1年ほど使い込んでいく中で、公式ドキュメントや英語のチュートリアルノートブックで学んだ知識、実務でハマりやすいポイントを整理したいと思い、この連載を作成しました。
+
+本記事は、Metaが公開しているProphetの公式Jupyter Notebookチュートリアル全10本を日本語で解説したまとめ記事（目次）です。
+
+---
+
+## はじめに
+
+Prophetは、Meta（旧Facebook）が開発したオープンソースの時系列予測ライブラリです。売上予測や需要予測、アクセス数予測など、ビジネスにおける時系列データの分析で広く利用されています。
+
+実務で1年間使ってみて感じたProphetの主な強みは以下の通りです。
+
+- **直感的な操作感**: `scikit-learn` のような `fit()` / `predict()` の統一されたAPIで、シンプルにモデリングが可能
+- **柔軟な季節性・イベント調整**: 曜日や年ごとの周期性、祝日やキャンペーンの影響を加法・乗法モデルで組み込みやすい
+- **外れ値や欠損値への強さ**: 実務データにありがちな欠損や突発的な異常値に対しても堅牢に動作する
+
+本連載では、公式リポジトリの英語ノートブックをベースに、**「手元（Google Colab）で実際にコードを動かしながら学べる日本語ドキュメント」** として再構成しています。各記事の冒頭にある **Open in Colab** ボタンから、すぐにブラウザ上で実行可能です。
+
+---
+
+## 対象読者
+
+- Pythonを使った時系列分析や需要予測に興味がある方
+- 実務でProphetの導入を検討している、または使い始めている方
+- トレンド変化点、季節性、祝日効果、モデル診断などの機能を体系的に理解したい方
+
+---
+
+## 連載目次（全10回）
+
+1. [第01回 クイックスタート](01_quick_start_qiita.md)
+   - **概要**: Prophetの基本構造、必須カラム（`ds`, `y`）の定義から、モデル学習・予測・基本プロットまでの流れを解説します。
+2. [第02回 飽和予測（ロジスティック成長モデル）](02_saturating_forecasts_qiita.md)
+   - **概要**: ユーザー数や市場規模など、理論上の上限（`cap`）・下限（`floor`）が存在するデータの予測方法を扱います。
+3. [第03回 トレンドの変化点検知](03_trend_changepoints_qiita.md)
+   - **概要**: トレンドが変化する「変化点（changepoints）」の自動検知と、柔軟性を制御する `changepoint_prior_scale` の調整方法を解説します。
+4. [第04回 季節性・祝日効果・外部回帰変数](04_seasonality_holiday_effects_and_regressors_qiita.md)
+   - **概要**: 祝日やイベント効果の追加（`holidays`）、カスタム季節性のモデリング、追加回帰変数（`add_regressor`）の利用方法を扱います。
+5. [第05回 乗法的な季節性](05_multiplicative_seasonality_qiita.md)
+   - **概要**: トレンドの上昇に伴って季節変動の幅が大きくなるデータに対する `seasonality_mode='multiplicative'` の適用方法を解説します。
+6. [第06回 予測区間（不確実性の評価）](06_uncertainty_intervals_qiita.md)
+   - **概要**: 予測の不確実性を表す予測区間（`interval_width`）の計算構造と、シミュレーション設定について解説します。
+7. [第07回 外れ値の処理](07_outliers_qiita.md)
+   - **概要**: 突発的な異常値がモデルに与える悪影響を防ぐため、データを欠損値（`np.nan`）に置き換えて堅牢に推定するテクニックを扱います。
+8. [第08回 非日次データの扱い（月次・サブデイリー）](08_non-daily_data_qiita.md)
+   - **概要**: 月次や週次などの粗いデータ、または時間単位・分単位などの細かなデータにおける扱い方や注意点を解説します。
+9. [第09回 モデル診断と交差検証](09_diagnostics_qiita.md)
+   - **概要**: 時系列交差検証（`cross_validation`）の実行方法と、RMSEやMAPEなどの評価指標（`performance_metrics`）の可視化を扱います。
+10. [第10回 高度なトピック（モデル保存・フラットトレンド）](10_additional_topics_qiita.md)
+    - **概要**: モデルのJSONシリアライズ（`prophet.serialize`）による保存・復元や、トレンド変化のない `growth='flat'` の設定方法を解説します。
+
+---
+
+## おすすめの読み方
+
+1. まずは **[第01回 クイックスタート](01_quick_start_qiita.md)** で基本のデータ構造と予測フローを把握するのがおすすめです。
+2. その後は、実務で気になっているテーマ（「異常値をどう処理するか」「モデル評価をどう行うか」など）に合わせて、該当する回を個別にお読みいただく形でも問題ありません。
+3. 各記事冒頭の **Open in Colab** ボタンを活用し、実際のコードやハイパーパラメータをいじりながら挙動を確認してみてください。
+"""
+
+with open(os.path.join('articles', 'master_article.md'), 'w', encoding='utf-8') as f:
+    f.write(master_md.strip() + "\n")
+
 print("ALL TUTORIAL FILES AND IMAGES SUCCESSFULLY GENERATED IN RESTRUCTURING!")
+

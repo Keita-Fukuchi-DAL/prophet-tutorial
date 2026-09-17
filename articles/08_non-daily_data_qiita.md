@@ -48,5 +48,5 @@ fig2.savefig('08_plot_subdaily.png', bbox_inches='tight')
 ---
 **連載ナビゲーション**
 * [← 前の記事（第07回 ノイズ対策編：外れ値の処理）](07_outliers_qiita.md)
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第09回 精度検証編：モデル診断） →](09_diagnostics_qiita.md)

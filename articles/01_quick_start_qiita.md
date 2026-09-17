@@ -107,5 +107,5 @@ fig2.savefig('01_plot_components.png', bbox_inches='tight')
 
 ---
 **連載ナビゲーション**
-* [📋 マスター記事（全10回目次）](master_article.md)
+* [マスター記事（全10回目次）](master_article.md)
 * [次の記事（第02回 成長限界編：飽和予測） →](02_saturating_forecasts_qiita.md)
